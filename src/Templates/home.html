@@ -4,58 +4,67 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Agenda - Home</title>
 </head>
 <body>
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Buscar Contato" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
-            <h4 style="text-align: center; margin-right: 16.5%;">USERNAME</h4>
-            <a href="login.html" role="button" class="btn btn-danger">Sair</a>
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <form class="d-flex" action="" method="POST">
+            <input class="form-control me-2" type="search" placeholder="Buscar Contato" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+        <h4 style="text-align: center; margin-right: 16.5%;">{{ "Usuario: " + usuario.nome + " Id: " }}
+            {{ usuario.identificador}}</h4>
+        <a href="/logout" role="button" class="btn btn-danger">Sair</a>
+    </div>
+</nav>
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-sm-6">
+            <h1>Contatos<span class="badge badge-primary badge-pill"><a href="/contact/add" role="button"
+                                                                        class="btn btn-primary btn-sm">&nbsp;<strong>+</strong>&nbsp;</a></span>
+            </h1>
+            <ul class="list-group">
+                {% for contato in usuario.contatos if usuario.contatos %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ contato.nome }}
+                    <span class="badge badge-primary badge-pill"><a href="editContact.html" role="button"
+                                                                    class="btn btn-outline-success btn-sm">Editar</a>&nbsp;	<button
+                            type="button" class="btn btn-outline-danger btn-sm">Apagar</button></span>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
-    </nav>
-    <div class="container">
-        <br>
-        <div class="row">
-            <div class="col-sm-6">
-                <h1>Contatos<span class="badge badge-primary badge-pill"><a href="createContact.html" role="button" class="btn btn-primary btn-sm" href>&nbsp;<strong>+</strong>&nbsp;</a></span></h1>
-                <ul class="list-group" a>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Kelvin
-                        <span class="badge badge-primary badge-pill"><a href="editContact.html" role="button" class="btn btn-outline-success btn-sm">Editar</a>&nbsp;	<button type="button" class="btn btn-outline-danger btn-sm">Apagar</button></span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Yuri
-                        <span class="badge badge-primary badge-pill"><button type="button" class="btn btn-outline-success btn-sm">Editar</button>&nbsp;	<button type="button" class="btn btn-outline-danger btn-sm">Apagar</button></span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Raquel
-                        <span class="badge badge-primary badge-pill"><button type="button" class="btn btn-outline-success btn-sm">Editar</button>&nbsp;	<button type="button" class="btn btn-outline-danger btn-sm">Apagar</button></span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Pablo
-                        <span class="badge badge-primary badge-pill"><button type="button" class="btn btn-outline-success btn-sm">Editar</button>&nbsp;	<button type="button" class="btn btn-outline-danger btn-sm">Apagar</button></span>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-sm-6">
-                <h1>Grupos<span class="badge badge-primary badge-pill"><a href="createGroup.html" role="button" class="btn btn-primary btn-sm" href>&nbsp;<strong>+</strong>&nbsp;</a></span></h1>
-                <ul class="list-group" a>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Estudo
-                        <span class="badge badge-primary badge-pill"><button type="button" class="btn btn-outline-success btn-sm">Editar</button>&nbsp;	<button type="button" class="btn btn-outline-danger btn-sm">Apagar</button></span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Trabalho
-                        <span class="badge badge-primary badge-pill"><a href="editGroup.html" role="button" class="btn btn-outline-success btn-sm">Editar</a>&nbsp;	<button type="button" class="btn btn-outline-danger btn-sm">Apagar</button></span>
-                    </li>
-                </ul>
-            </div>
+        <div class="col-sm-6">
+            <h1>Grupos<span class="badge badge-primary badge-pill"><a href="/group/add" role="button"
+                                                                      class="btn btn-primary btn-sm">&nbsp;<strong>+</strong>&nbsp;</a></span>
+            </h1>
+            <ul class="list-group">
+                {% for contato in usuario.grupos if usuario.grupos %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Estudo
+                    <span class="badge badge-primary badge-pill"><button type="button"
+                                                                         class="btn btn-outline-success btn-sm">Editar</button>&nbsp;	<button
+                            type="button" class="btn btn-outline-danger btn-sm">Apagar</button></span>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
+</div>
+<div class="alert alert warning" role="alert">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+</div>
 </body>
 </html>

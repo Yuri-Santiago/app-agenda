@@ -38,7 +38,8 @@ class Usuario:
         return self.__contatos
 
     # setters
-    def set_nome(self, novo_nome):
+    @nome.setter
+    def nome(self, novo_nome):
         self.__nome = novo_nome
 
     @email.setter

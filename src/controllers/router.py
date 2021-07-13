@@ -15,60 +15,96 @@ PUT api/contato/id
 DELETE api/contato/id
 """
 
-from flask import request, redirect, flash, url_for, render_template
+from flask import request, redirect, flash, render_template, session
 
 from src import app
 from src.models.usuarioDAO import UsuarioDAO
 
 
-usuario_atual = 0
-
 # login, sign up
 @app.route("/", methods=["GET", "POST"])
-@app.route("/index", methods=["GET", "POST"])
-def index():
-    global usuario_atual
+@app.route("/login", methods=["GET", "POST"])
+def login():
     if request.method == "POST":
         dados = request.form
-        if not dados['idEntrar'] and not dados['senhaEntrar']:
-            usuario_atual = UsuarioDAO.inserir_usuario(dados['nomeCadastro'], dados['emailCadastro'], dados['senhaCadastro'])
-            return redirect(url_for('home'))
-        else:
-            entrar = UsuarioDAO.selecionar_usuario(int(dados['idEntrar']), dados['senhaEntrar'])
+        # Cadastrar
+        if not dados.get('idEntrar', False) and not dados.get('senhaEntrar', False):
+            usuario_atual = UsuarioDAO.inserir_usuario(dados)
+            session['id'] = usuario_atual.identificador
+            return redirect('/home')
+
+        # Entrar
+        elif not dados.get('nomeCadastro', False) and not dados.get('emailCadastro', False) and not dados.get(
+                'senhaCadastro', False):
+            entrar = UsuarioDAO.validar_usuario(dados)
             if not entrar:
                 flash('ID ou Senha Incorreta')
             else:
-                return redirect(url_for('home'))
+                usuario_atual = entrar
+                session['id'] = usuario_atual.identificador
+                return redirect('/home')
+
+        # Entrar e Cadastrar
+        else:
+            flash('Preencha apenas um Formulário')
     return render_template('login.html')
 
 
-#
+# Função para deslogar da session
+@app.route("/logout")
+def logout():
+    session["id"] = None
+    return redirect("/")
+
+
 # read contatos, grupos, pesquisa por campo
 @app.route("/home", methods=["GET", "POST"])
 def home():
-    print(usuario_atual)
-    if request.method == "POST":  # se tiver algum post é pq o cabra ta usando a barra de pesquisa
-        dados = request.form
-        resultado = True
-        if not resultado:
-            flash("Não há resultados")
-        return render_template('home.html', objetos=resultado)
-    return render_template('home.html')
-    # todo como que eu vo pegar o id do cabra direto pra pegar as coisa dele
-#
-#
-# # adicionar grupo
-# @app.route("/add/group", methods=["GET", "POST"])
-# def add_group():
-#     pass
-#
-#
-# # adicionar contato
-# @app.route("/add/contact", methods=["GET", "POST"])
-# def add_contact():
-#     pass
-#
-#
+    if not session.get("id"):
+        return redirect('/login')
+    else:
+        if request.method == "POST":
+            dados = request.form
+            resultado = UsuarioDAO.pesquisa_atomica(dados['idUsuario'], dados['senha'], dados['search'])
+
+            if not resultado:
+                flash("Não há resultados")
+
+            return render_template('home.html',
+                                   usuario=UsuarioDAO.selecionar_usuario(session.get('id')))
+
+        return render_template('home.html',
+                               usuario=UsuarioDAO.selecionar_usuario(session.get('id')))
+
+
+# adicionar contato
+@app.route("/contact/add", methods=["GET", "POST"])
+def add_contact():
+    if not session.get("id"):
+        return redirect('/login')
+    else:
+        if request.method == "POST":
+            dados = request.form
+            inserir = UsuarioDAO.inserir_contato(dados, session.get('id'))
+            if inserir:
+                return redirect('/home')
+            flash("Contato repetido, tente novamente")
+        return render_template('createContact.html')
+
+
+# adicionar grupo
+@app.route("/group/add", methods=["GET", "POST"])
+def add_group():
+    if not session.get("id"):
+        return redirect('/login')
+    else:
+        if request.method == "POST":
+            contatos_selecionados = request.form.getlist("contatos")
+            print(contatos_selecionados)
+            dados = request.form
+        return render_template('createGroup.html', usuario=UsuarioDAO.selecionar_usuario(session.get('id')))
+
+
 # # editar group
 # @app.route("edit/group", methods=["GET", "POST"])
 # def edit_group():

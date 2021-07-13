@@ -5,88 +5,88 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criar Grupo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="home.html">Contatos</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="home.html">Contatos</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-    </nav>
-    <br>
-    <h1 style="text-align: center;">Criar Grupo</h1>
-    <hr>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
+        </button>
+    </div>
+</nav>
+<br>
+<h1 style="text-align: center;">Criar Grupo</h1>
+<hr>
+<div class="container">
+    <div class="row">
+
+        <div class="col-sm-6">
+            <form class="needs-validation col-auto" action="" method="POST" novalidate>
                 <h3>Dados do Grupo</h3>
-                <form class="needs-validation col-auto" novalidate>
-                        <div class="row">
-                            <div class="col">
-                                <label for="validationCustom01" class="col-form-label">Nome</label>
-                                <input type="text" class="form-control" id="validationCustom01" placeholder="Nome" required>
-                                <div class="valid-feedback">
-                                    Tudo certo!
-                                </div>
-                            </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="validationCustom01" class="col-form-label">Nome</label>
+                        <input type="text" class="form-control" id="validationCustom01" placeholder="Nome" required>
+                        <div class="valid-feedback">
+                            Tudo certo!
                         </div>
-                        <div class="row">
-                            <div class="form-group">
-                                <label for="validationCustom01" class="col-form-label">Descrição</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                            </div>
-                        </div>
-                        <br>
-                    <button class="btn btn-primary" type="submit">Criar</button>
-                </form>
-            </div>
-            <div class="col-sm-6">
-                <h3>Selecionar Contato</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="validationCustom01" class="col-form-label">Descrição</label>
+                        <label for="exampleFormControlTextarea1"></label><textarea class="form-control"
+                                                                                   id="exampleFormControlTextarea1"
+                                                                                   rows="3"></textarea>
+                    </div>
+                </div>
                 <br>
-                <ul class="list-group" a>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Kelvin
-                        <span class="badge badge-primary badge-pill"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Yuri
-                        <span class="badge badge-primary badge-pill"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Raquel
-                        <span class="badge badge-primary badge-pill"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Pablo
-                        <span class="badge badge-primary badge-pill"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></span>
-                    </li>
-                </ul>
-            </div>
+                <button class="btn btn-primary" type="submit">Criar</button>
+                <div class="col-sm-6">
+                    <h3>Selecionar Contato</h3>
+                    <br>
+                    <ul class="list-group" a>
+                        {% for contato in usuario.contatos if usuario.contatos %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ contato.nome }}
+                            <span class="badge badge-primary badge-pill"><input class="form-check-input" type="checkbox"
+                                                                                id="id_{{contato.nome}}"
+                                                                                name="contatos"
+                                                                                value="{{contato.nome}}"></span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </form>
         </div>
     </div>
-    <script>
+</div>
+<script>
     // Exemplo de JavaScript inicial para desativar envios de formulário, se houver campos inválidos.
-    (function() {
-    'use strict';
-    window.addEventListener('load', function() {
-        // Pega todos os formulários que nós queremos aplicar estilos de validação Bootstrap personalizados.
-        var forms = document.getElementsByClassName('needs-validation');
-        // Faz um loop neles e evita o envio
-        var validation = Array.prototype.filter.call(forms, function(form) {
-        form.addEventListener('submit', function(event) {
-            if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-            }
-            form.classList.add('was-validated');
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Pega todos os formulários que nós queremos aplicar estilos de validação Bootstrap personalizados.
+            var forms = document.getElementsByClassName('needs-validation');
+            // Faz um loop neles e evita o envio
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
         }, false);
-        });
-    }, false);
     })();
-    </script>
+</script>
 </body>
 </html>

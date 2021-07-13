@@ -1,12 +1,12 @@
 class Contato:
 
-    def __init__(self, nome, endereco, cidade, cep, telefones, emails):
+    def __init__(self, nome, endereco, cidade, cep, telefone, email):
         self.__nome = nome
         self.__endereco = endereco
         self.__cidade = cidade
         self.__cep = cep
-        self.__telefones = telefones
-        self.__emails = emails
+        self.__telefone = telefone
+        self.__email = email
 
         self.__observadores = []
     # getters
