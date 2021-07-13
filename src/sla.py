@@ -1,20 +1,13 @@
-from Account import *
-from Contact import *
-from Group import *
-import re
-
-
-class ObjectFactory:
-    @staticmethod
+@staticmethod
     def get_object(dados):
         kind = dados["kind"]
 
         if kind == "account":
-            return Account()
+            return Usuario()
         elif kind == "group":
-            return Group()
+            return Grupo()
         elif kind == "contact":
-            return Contact()
+            return Contato()
         else:
             return None
 

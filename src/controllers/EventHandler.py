@@ -1,5 +1,4 @@
-from Observer import *
-from src.models.Factory import *
+from src.controllers.Observer import *
 
 # todo configurar o route pra deixar todos os dados bem catalogados na hr de chamar o observer !!!
 #  fazer metodos get set dos collections de object
