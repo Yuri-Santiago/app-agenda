@@ -51,14 +51,12 @@ def home():
         return redirect('/index')
     else:
         if request.method == "POST":
-            pass
-            # dados = request.form
-            # resultado = dao.pesquisa_atomica(dados['idUsuario'], dados['senha'], dados['search'])
-            #
-            # if not resultado:
-            #     flash("Não há resultados")
-            #
-            # return observador.renderizar('home.html', dao.selecionar_usuario(session.get('id')))
+            dados = request.form
+            resultado = dao.pesquisa_atomica(session.get('id'), dados['search'])
+
+            if resultado:
+                return observador.renderizar('search.html', resultado)
+            flash("Não há resultados")
 
         return observador.renderizar('home.html', dao.selecionar_usuario(session.get('id')))
 

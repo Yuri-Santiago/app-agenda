@@ -8,7 +8,14 @@ class Contato:
         self.__telefone = telefone
         self.__email = email
 
-        self.__observadores = []
+    def dict(self):
+        return {'nome': self.__nome, 'endereco': self.__endereco, 'cidade': self.__cidade, 'cep': self.__cep,
+                'telefones': self.__telefone, 'emails': self.__email}
+
+    def dados(self):
+        return f'{self.__nome}/{self.endereco}/{self.__endereco}/{self.cidade}/{self.__cep}/{self.__telefone}' \
+               f'/{self.__email}'
+
     # getters
     @property
     def nome(self):

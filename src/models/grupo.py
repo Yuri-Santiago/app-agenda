@@ -1,4 +1,3 @@
-
 class Grupo:
 
     def __init__(self, nome, descricao):
@@ -33,4 +32,3 @@ class Grupo:
 
     def remover_contato(self, contato):
         self.__contatos.remove(contato)
-

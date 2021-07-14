@@ -134,7 +134,6 @@ class UsuarioDAO:
                 for contato in usuario.contatos:
                     if contato.nome in contatos_selecionados:
                         grupo.adicionar_contato(contato)
-
         cls.salvar(usuario)
         return True
 
@@ -151,6 +150,6 @@ class UsuarioDAO:
         cls.salvar(usuario)
 
     @classmethod
-    def pesquisa_atomica(cls, id, senha, search):
-        user = cls.validar_usuario(id, senha)
-        return user.pesquisa(search)
+    def pesquisa_atomica(cls, id, search):
+        usuario = cls.selecionar_usuario(id)
+        return usuario.pesquisa(search)

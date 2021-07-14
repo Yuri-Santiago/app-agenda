@@ -13,11 +13,13 @@
     <div class="container-fluid">
         <form class="d-flex" action="" method="POST">
             <input class="form-control me-2" type="text" placeholder="Buscar Contato" aria-label="Search"
-                   name="search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
+                   name="search" disabled>
+            <button class="btn btn-outline-success" type="button"
+                    id="/home" onclick=voltar(this.id)>Voltar
+            </button>
         </form>
-        <h4 style="text-align: center; margin-right: 16.5%;">{{ "Usuario: " + usuario.nome + " Id: " }}
-            {{ usuario.identificador}}</h4>
+        <h4 style="text-align: center; margin-right: 16.5%;">{{ "Usuario: " + usuario[0].nome + " Id: " }}
+            {{ usuario[0].identificador}}</h4>
         <a href="/logout" role="button" class="btn btn-danger">Sair</a>
     </div>
 </nav>
@@ -29,7 +31,7 @@
                                                                         class="btn btn-primary btn-sm">&nbsp;<strong>+</strong>&nbsp;</a></span>
             </h1>
             <ul class="list-group">
-                {% for contato in usuario.contatos if usuario.contatos %}
+                {% for contato in usuario[1] if usuario[1] %}
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     {{ contato.nome }}
                     <span class="badge badge-primary badge-pill">
@@ -50,7 +52,7 @@
                                                                       class="btn btn-primary btn-sm">&nbsp;<strong>+</strong>&nbsp;</a></span>
             </h1>
             <ul class="list-group">
-                {% for grupo in usuario.grupos if usuario.grupos %}
+                {% for grupo in usuario[2] if usuario[2] %}
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     {{ grupo.nome }}
                     <span class="badge badge-primary badge-pill">
@@ -110,6 +112,10 @@
         let values = dados.split('/')
         window.alert('Nome do Grupo: ' + values[0] + '\nDescrição: ' + values[1] + '\nContatos: '
             + values[2])
+    }
+
+    function voltar(url) {
+        window.location.href = url
     }
 </script>
 </body>
