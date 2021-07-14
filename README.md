@@ -353,13 +353,13 @@ Link Projeto com alguns diagramas: [GenMyModel](https://app.genmymodel.com/perso
 ![sequence criar grupo](Documentação/UML/Sequence_CreateGrupo.jpeg)
 
 ###	3.3  Diagrama de Atividade
-####3.3.1 Geral
+#### 3.3.1 Geral
 ![activity principal](Documentação/UML/activity-diagram.png)
 
-####3.3.2 Listagem de um contato
+#### 3.3.2 Listagem de um contato
 ![activity listar contato](Documentação/UML/activity-diagram-listar_contato.png)
 
-####3.3.3 Mapa de navegação de telas
+#### 3.3.3 Mapa de navegação de telas
 ![activity pesquisa](Documentação/UML/activity-diagram-telas.png)
 
 ###	3.4  Diagrama de Classes
