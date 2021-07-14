@@ -13,8 +13,7 @@ class Contato:
                 'telefones': self.__telefone, 'emails': self.__email}
 
     def dados(self):
-        return f'{self.__nome}/{self.endereco}/{self.__endereco}/{self.cidade}/{self.__cep}/{self.__telefone}' \
-               f'/{self.__email}'
+        return f'{self.__nome}/{self.__endereco}/{self.cidade}/{self.__cep}/{self.__telefone}/{self.__email}'
 
     # getters
     @property
