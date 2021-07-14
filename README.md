@@ -343,13 +343,13 @@ Link Projeto com alguns diagramas: [GenMyModel](https://app.genmymodel.com/perso
 
 
 ### 3.2  Diagrama de Sequência 
-####3.2.1 Geral
+#### 3.2.1 Geral
 ![sequence principal](Documentação/UML/Sequence_general.jpeg)
 
-####3.2.2 Pesquisa contato
+#### 3.2.2 Pesquisa contato
 ![sequence pesquisa](Documentação/UML/Sequence_Search.jpeg)
 
-####3.2.3 Criar Grupo
+#### 3.2.3 Criar Grupo
 ![sequence criar grupo](Documentação/UML/Sequence_CreateGrupo.jpeg)
 
 ###	3.3  Diagrama de Atividade
