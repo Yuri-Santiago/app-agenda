@@ -8,7 +8,7 @@ Projeto destinado ao desenvolvimento e implementação de uma aplicação web de
 - [@raquelmcoelho](https://github.com/raquelmcoelho)
 - [@KelvinLR](https://github.com/KelvinLR)
 
-![Criadores](Documentação/Autores/autores_borda.png)
+![Criadores](Documentação/Autores/Criadores-removebg-preview.png)
 
 ## 1 - Especificação de Requisitos
 
