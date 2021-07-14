@@ -28,11 +28,11 @@ class Contato:
 
     @property
     def telefone(self):
-        return self.__telefones
+        return self.__telefone
 
     @property
     def email(self):
-        return self.__emails
+        return self.__email
 
     # setters
     @nome.setter
@@ -51,11 +51,10 @@ class Contato:
     def cep(self, novo_cep):
         self.__cep = novo_cep
 
-    def adicionar_telefone(self, telefone):
-        self.__telefones.append(telefone)
+    @telefone.setter
+    def telefone(self, novo_telefone):
+        self.__telefone = novo_telefone
 
-    def adicionar_email(self, email):
-        self.__emails.append(email)
-
-    def inscrever(self, observador):
-        self.__observadores.append(observador)
+    @email.setter
+    def email(self, novo_email):
+        self.__email = novo_email

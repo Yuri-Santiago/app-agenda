@@ -16,7 +16,7 @@ class Grupo:
         return self.__descricao
 
     @property
-    def membros_id(self):
+    def contatos(self):
         return self.__contatos
 
     # setters
@@ -30,3 +30,7 @@ class Grupo:
 
     def adicionar_contato(self, contato):
         self.__contatos.append(contato)
+
+    def remover_contato(self, contato):
+        self.__contatos.remove(contato)
+

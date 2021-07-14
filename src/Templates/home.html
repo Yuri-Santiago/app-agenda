@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,9 +31,15 @@
                 {% for contato in usuario.contatos if usuario.contatos %}
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     {{ contato.nome }}
-                    <span class="badge badge-primary badge-pill"><a href="editContact.html" role="button"
-                                                                    class="btn btn-outline-success btn-sm">Editar</a>&nbsp;	<button
-                            type="button" class="btn btn-outline-danger btn-sm">Apagar</button></span>
+                    <span class="badge badge-primary badge-pill">
+                        <button type="button" class="btn btn-outline-primary btn-sm"
+                                id="{{ contato.dados() }}"
+                                onclick=verContato(this.id)>Ver </button>
+                        <button type="button" onclick=editarContato(this.id) id="update/{{ contato.nome }}"
+                                class="btn btn-outline-success btn-sm"
+                        >Editar</button>&nbsp;
+                        <button type="button" onclick=deletarContato(this.id) id="delete/{{ contato.nome }}"
+                                class="btn btn-outline-danger btn-sm">Apagar</button></span>
                 </li>
                 {% endfor %}
             </ul>
@@ -43,12 +49,16 @@
                                                                       class="btn btn-primary btn-sm">&nbsp;<strong>+</strong>&nbsp;</a></span>
             </h1>
             <ul class="list-group">
-                {% for contato in usuario.grupos if usuario.grupos %}
+                {% for grupo in usuario.grupos if usuario.grupos %}
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Estudo
-                    <span class="badge badge-primary badge-pill"><button type="button"
-                                                                         class="btn btn-outline-success btn-sm">Editar</button>&nbsp;	<button
-                            type="button" class="btn btn-outline-danger btn-sm">Apagar</button></span>
+                    {{ grupo.nome }}
+                    <span class="badge badge-primary badge-pill">
+                        <button type="button" onclick=verGrupo(this.id) id="{{ grupo.dados() }}"
+                                class="btn btn-outline-primary btn-sm">Ver</button>
+                        <button type="button" onclick=editarGrupo(this.id) id="update/{{ grupo.nome }}"
+                                class="btn btn-outline-success btn-sm">Editar</button>&nbsp;
+                        <button type="button" onclick=deletarGrupo(this.id) id="delete/{{ grupo.nome }}"
+                                class="btn btn-outline-danger btn-sm">Apagar</button></span>
                 </li>
                 {% endfor %}
             </ul>
@@ -66,5 +76,40 @@
     {% endif %}
     {% endwith %}
 </div>
+<script>
+    function deletarContato(nome_clicado) {
+        let confirmacao = confirm("Tem certeza que quer Deletar?");
+        if (confirmacao) {
+            window.location.href = "/contact/" + nome_clicado
+        }
+    }
+
+    function editarContato(nome_clicado) {
+        window.location.href = "/contact/" + nome_clicado
+    }
+
+    function verContato(dados) {
+        let values = dados.split('/')
+        window.alert('Nome: ' + values[0] + '\nEndereço: ' + values[1] + '\nCidade: ' + values[2] + '\nCEP: '
+            + values[3] + '\nTelefone: ' + values[4] + '\nEmail: ' + values[5])
+    }
+
+    function deletarGrupo(nome_clicado) {
+        let confirmacao = confirm("Tem certeza que quer Deletar?");
+        if (confirmacao) {
+            window.location.href = "/group/" + nome_clicado
+        }
+    }
+
+    function editarGrupo(nome_clicado) {
+        window.location.href = "/group/" + nome_clicado
+    }
+
+    function verGrupo(dados) {
+        let values = dados.split('/')
+        window.alert('Nome do Grupo: ' + values[0] + '\nDescrição: ' + values[1] + '\nContatos: '
+            + values[2])
+    }
+</script>
 </body>
 </html>

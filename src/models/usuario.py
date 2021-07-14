@@ -56,6 +56,12 @@ class Usuario:
     def adicionar_grupo(self, grupo):
         self.__grupos.append(grupo)
 
+    def remover_contato(self, contato):
+        self.__contatos.remove(contato)
+
+    def remover_grupo(self, grupo):
+        self.__grupos.remove(grupo)
+
     def checa_senha(self, senha):
         if cryp.verify(senha, self.senha):
             return True
